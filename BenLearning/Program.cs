@@ -13,12 +13,7 @@ namespace BenLearning
     {
         static void Main(string[] args)
         {
-            
-
             runXL2.XL2GetResults();
-
-            
-
         }
 
 
@@ -68,6 +63,34 @@ namespace BenLearning
     {
         public class NoiseMeasurementCommands
         {
+
+
+            public static NoiseMeasurementCommands GetStandardNMForCommmand(string command)
+            {
+                return new NoiseMeasurementCommands(command, "A", "F", "" );
+
+            }
+
+            public NoiseMeasurementCommands() { }
+
+            public NoiseMeasurementCommands(string _command, string _fweight,  string _metric)
+            {
+
+                command = _command;
+                fweight = _fweight;
+                tweight = "";
+                metric = _metric;
+            }
+
+            public NoiseMeasurementCommands (string _command, string _fweight, string _metric, string _tweight)
+            {
+
+                command = _command;
+                fweight =_fweight;
+                tweight = _tweight;
+                metric = _metric;
+            }
+
             public string command { get; set; }
             public string fweight { get; set; }
             public string tweight { get; set; }
@@ -115,6 +138,9 @@ namespace BenLearning
 
         public static List<NoiseMeasurementCommands> singleValueCommands = new List<NoiseMeasurementCommands>
         {
+
+
+
             new NoiseMeasurementCommands() {command = "MEAS:SLM:123? LAEQ\n", fweight = "A", metric = "EQ"},
             new NoiseMeasurementCommands() {command = "MEAS:SLM:123? LAFMAX\n", fweight = "A", tweight = "F", metric = "MAX"},
             new NoiseMeasurementCommands() {command = "MEAS:SLM:123? LAFMIN\n", fweight = "A", tweight = "F", metric = "MIN"},
